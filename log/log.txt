@@ -1,0 +1,171 @@
+==> [train] epoch 1, total_loss 9.458972930908203, train_acc 0.9730718085106383
+==> [train] epoch 1, total_loss 8.393668174743652, train_acc 0.9810505319148937
+==> [train] epoch 1, total_loss 8.091386795043945, train_acc 0.995844414893617
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 1, total_loss 8.185884475708008, train_acc 0.9865359042553191
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 2, total_loss 0.19329622387886047, train_acc 1.0
+==> [evaluate on val] epoch 2, acc 1.0 
+==> [train] epoch 3, total_loss 0.13332432508468628, train_acc 1.0
+==> [evaluate on val] epoch 3, acc 1.0 
+==> [train] epoch 4, total_loss 0.10200710594654083, train_acc 1.0
+==> [evaluate on val] epoch 4, acc 1.0 
+==> [train] epoch 1, total_loss 8.896520614624023, train_acc 0.9867021276595744
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 1, total_loss 8.989622116088867, train_acc 0.9767287234042553
+==> [train] epoch 1, total_loss 8.700825691223145, train_acc 0.9895279255319149
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 1, total_loss 8.90172290802002, train_acc 0.9832114361702128
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 2, total_loss 0.21585318446159363, train_acc 1.0
+==> [evaluate on val] epoch 2, acc 1.0 
+==> [train] epoch 3, total_loss 0.14544162154197693, train_acc 1.0
+==> [evaluate on val] epoch 3, acc 1.0 
+==> [train] epoch 4, total_loss 0.10924606770277023, train_acc 1.0
+==> [evaluate on val] epoch 4, acc 1.0 
+==> [train] epoch 5, total_loss 0.08727138489484787, train_acc 1.0
+==> [evaluate on val] epoch 5, acc 1.0 
+==> [train] epoch 6, total_loss 0.07210344821214676, train_acc 1.0
+==> [evaluate on val] epoch 6, acc 1.0 
+==> [train] epoch 1, total_loss 8.607791900634766, train_acc 0.984873670212766
+==> [evaluate on val] epoch 1, acc 1.0 
+epoch 1, acc 1.0, saving model
+==> [train] epoch 2, total_loss 0.2131524384021759, train_acc 1.0
+==> [evaluate on val] epoch 2, acc 1.0 
+==> [train] epoch 1, total_loss 29.59786033630371, train_acc 0.9079122340425532
+==> [evaluate on val] epoch 1, acc 0.875 
+epoch 1, acc 0.875, saving model
+==> [train] epoch 1, total_loss 32.085655212402344, train_acc 0.8929521276595744
+==> [evaluate on val] epoch 1, acc 0.875 
+epoch 1, acc 0.875, saving model
+==> [train] epoch 2, total_loss 17.765844345092773, train_acc 0.9258643617021277
+==> [evaluate on val] epoch 2, acc 0.875 
+==> [train] epoch 3, total_loss 13.967153549194336, train_acc 0.942154255319149
+==> [evaluate on val] epoch 3, acc 0.8851425438596491 
+epoch 3, acc 0.8851425438596491, saving model
+==> [train] epoch 4, total_loss 11.800646781921387, train_acc 0.953125
+==> [evaluate on val] epoch 4, acc 0.8955592105263158 
+epoch 4, acc 0.8955592105263158, saving model
+==> [train] epoch 5, total_loss 10.291394233703613, train_acc 0.9596077127659575
+==> [evaluate on val] epoch 5, acc 0.8958333333333334 
+epoch 5, acc 0.8958333333333334, saving model
+==> [train] epoch 6, total_loss 8.697615623474121, train_acc 0.9642619680851063
+==> [evaluate on val] epoch 6, acc 0.9087171052631579 
+epoch 6, acc 0.9087171052631579, saving model
+==> [train] epoch 7, total_loss 7.775597095489502, train_acc 0.96875
+==> [evaluate on val] epoch 7, acc 0.8969298245614035 
+==> [train] epoch 8, total_loss 6.274827480316162, train_acc 0.977061170212766
+==> [evaluate on val] epoch 8, acc 0.9185855263157895 
+epoch 8, acc 0.9185855263157895, saving model
+==> [train] epoch 9, total_loss 5.479488849639893, train_acc 0.980718085106383
+==> [evaluate on val] epoch 9, acc 0.9015899122807017 
+==> [train] epoch 10, total_loss 4.230276584625244, train_acc 0.984375
+==> [evaluate on val] epoch 10, acc 0.9172149122807017 
+==> [train] epoch 11, total_loss 3.2642807960510254, train_acc 0.9901928191489362
+==> [evaluate on val] epoch 11, acc 0.9237938596491229 
+epoch 11, acc 0.9237938596491229, saving model
+==> [train] epoch 12, total_loss 2.5515546798706055, train_acc 0.9921875
+==> [evaluate on val] epoch 12, acc 0.9287280701754386 
+epoch 12, acc 0.9287280701754386, saving model
+==> [train] epoch 13, total_loss 2.59660267829895, train_acc 0.9935172872340425
+==> [evaluate on val] epoch 13, acc 0.9224232456140351 
+==> [train] epoch 14, total_loss 1.908167839050293, train_acc 0.995345744680851
+==> [evaluate on val] epoch 14, acc 0.921875 
+==> [train] epoch 15, total_loss 1.8225376605987549, train_acc 0.9955119680851063
+==> [evaluate on val] epoch 15, acc 0.9355811403508771 
+epoch 15, acc 0.9355811403508771, saving model
+==> [train] epoch 16, total_loss 1.1303645372390747, train_acc 0.9970079787234043
+==> [evaluate on val] epoch 16, acc 0.9279057017543859 
+==> [train] epoch 17, total_loss 1.8357458114624023, train_acc 0.9950132978723404
+==> [evaluate on val] epoch 17, acc 0.9229714912280702 
+==> [train] epoch 18, total_loss 1.7750868797302246, train_acc 0.9943484042553191
+==> [evaluate on val] epoch 18, acc 0.9290021929824561 
+==> [train] epoch 19, total_loss 1.5568726062774658, train_acc 0.9941821808510638
+==> [evaluate on val] epoch 19, acc 0.9331140350877193 
+==> [train] epoch 20, total_loss 1.498059630393982, train_acc 0.9961768617021277
+==> [evaluate on val] epoch 20, acc 0.9207785087719298 
+==> [train] epoch 21, total_loss 1.2714266777038574, train_acc 0.996841755319149
+==> [evaluate on val] epoch 21, acc 0.924890350877193 
+==> [train] epoch 22, total_loss 0.9102957248687744, train_acc 0.9973404255319149
+==> [evaluate on val] epoch 22, acc 0.9207785087719298 
+==> [train] epoch 23, total_loss 0.7543314099311829, train_acc 0.9980053191489362
+==> [evaluate on val] epoch 23, acc 0.9281798245614035 
+==> [train] epoch 24, total_loss 0.6603977680206299, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 24, acc 0.9262609649122807 
+==> [train] epoch 25, total_loss 0.5183987021446228, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 25, acc 0.9336622807017544 
+==> [train] epoch 26, total_loss 0.7780088782310486, train_acc 0.9973404255319149
+==> [evaluate on val] epoch 26, acc 0.9353070175438597 
+==> [train] epoch 27, total_loss 0.429342657327652, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 27, acc 0.9331140350877193 
+==> [train] epoch 28, total_loss 0.4621606767177582, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 28, acc 0.9342105263157895 
+==> [train] epoch 29, total_loss 0.5612003803253174, train_acc 0.9980053191489362
+==> [evaluate on val] epoch 29, acc 0.9298245614035088 
+==> [train] epoch 30, total_loss 0.39430803060531616, train_acc 0.9978390957446809
+==> [evaluate on val] epoch 30, acc 0.9342105263157895 
+==> [train] epoch 31, total_loss 0.27700522541999817, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 31, acc 0.9303728070175439 
+==> [train] epoch 32, total_loss 0.4280656576156616, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 32, acc 0.9339364035087719 
+==> [train] epoch 33, total_loss 0.30206504464149475, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 33, acc 0.9333881578947368 
+==> [train] epoch 34, total_loss 0.3071138262748718, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 34, acc 0.9298245614035088 
+==> [train] epoch 35, total_loss 0.26874491572380066, train_acc 0.9988364361702128
+==> [evaluate on val] epoch 35, acc 0.9306469298245614 
+==> [train] epoch 36, total_loss 0.27492818236351013, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 36, acc 0.9292763157894737 
+==> [train] epoch 37, total_loss 0.3191172778606415, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 37, acc 0.9311951754385965 
+==> [train] epoch 38, total_loss 0.3261268138885498, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 38, acc 0.9300986842105263 
+==> [train] epoch 39, total_loss 0.24448862671852112, train_acc 0.9990026595744681
+==> [evaluate on val] epoch 39, acc 0.9331140350877193 
+==> [train] epoch 40, total_loss 0.3541601300239563, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 40, acc 0.9331140350877193 
+==> [train] epoch 41, total_loss 0.31211408972740173, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 41, acc 0.9311951754385965 
+==> [train] epoch 42, total_loss 0.28744059801101685, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 42, acc 0.9331140350877193 
+==> [train] epoch 43, total_loss 0.3034725785255432, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 43, acc 0.9331140350877193 
+==> [train] epoch 44, total_loss 0.25664886832237244, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 44, acc 0.9325657894736842 
+==> [train] epoch 45, total_loss 0.23093585669994354, train_acc 0.9991688829787234
+==> [evaluate on val] epoch 45, acc 0.9317434210526315 
+==> [train] epoch 46, total_loss 0.24883559346199036, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 46, acc 0.9314692982456141 
+==> [train] epoch 47, total_loss 0.2576676309108734, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 47, acc 0.9311951754385965 
+==> [train] epoch 48, total_loss 0.2408417910337448, train_acc 0.9988364361702128
+==> [evaluate on val] epoch 48, acc 0.9295504385964912 
+==> [train] epoch 49, total_loss 0.2566979229450226, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 49, acc 0.9314692982456141 
+==> [train] epoch 50, total_loss 0.268893301486969, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 50, acc 0.9311951754385965 
+==> [train] epoch 51, total_loss 0.22793561220169067, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 51, acc 0.930921052631579 
+==> [train] epoch 52, total_loss 0.18303625285625458, train_acc 0.9988364361702128
+==> [evaluate on val] epoch 52, acc 0.9292763157894737 
+==> [train] epoch 53, total_loss 0.24172669649124146, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 53, acc 0.9298245614035088 
+==> [train] epoch 54, total_loss 0.2274419367313385, train_acc 0.9983377659574468
+==> [evaluate on val] epoch 54, acc 0.9325657894736842 
+==> [train] epoch 55, total_loss 0.22254100441932678, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 55, acc 0.9295504385964912 
+==> [train] epoch 56, total_loss 0.22868116199970245, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 56, acc 0.9311951754385965 
+==> [train] epoch 57, total_loss 0.27194279432296753, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 57, acc 0.9325657894736842 
+==> [train] epoch 58, total_loss 0.21504271030426025, train_acc 0.9985039893617021
+==> [evaluate on val] epoch 58, acc 0.9353070175438597 
+==> [train] epoch 59, total_loss 0.25573524832725525, train_acc 0.9981715425531915
+==> [evaluate on val] epoch 59, acc 0.9320175438596491 
+==> [train] epoch 60, total_loss 0.23288649320602417, train_acc 0.9986702127659575
+==> [evaluate on val] epoch 60, acc 0.9322916666666666 

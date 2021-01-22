@@ -59,6 +59,7 @@ def evaluate_on_valset(epoch, model):
 cfg = Config()
 with open(cfg.log_txt_path, 'a') as f:
     f.write(cfg.config_message + "\n")
+    print(cfg.config_message)
 args = init_args()
 model_save_path = args.model
 # ===============================================
@@ -74,7 +75,7 @@ print("==> finish loading data")
 # ===============================================
 #            2. Load Model 
 # ===============================================
-model=Net()
+model=Net(cfg)
 loss_fc = model.loss().cuda()
 validator_function = model.validator_function()
 optimizer = torch.optim.SGD(model.parameters(), lr=cfg.lr, momentum=0.9)

@@ -10,11 +10,24 @@ from torch.nn import init
 def _validate(modelOutput, labels):
     maxvalues, maxindices = torch.max(modelOutput.data, 1)
     count = 0
+    Mesothelial_correct = 0
+    Cancer_correct = 0
+    Mesothelial_wrong = 0
+    Cancer_wrong = 0
     for i in range(0, labels.squeeze(1).size(0)):
         if maxindices[i] == labels.squeeze(1)[i]:
             count += 1
+            if maxindices[i] == 0:
+                Mesothelial_correct += 1
+            elif maxindices[i] == 1:
+                Cancer_correct += 1
+        else:
+            if labels.squeeze(1)[i] == 0:
+                Mesothelial_wrong += 1
+            elif labels.squeeze(1)[i] == 1:
+                Cancer_wrong += 1
 
-    return count, maxindices
+    return count, maxindices, Mesothelial_correct, Cancer_correct, Mesothelial_wrong, Cancer_wrong
 
 class hswish(nn.Module):
     def forward(self, x):
@@ -79,9 +92,9 @@ class Block(nn.Module):
 
 
 class MobileNetV3_Large(nn.Module):
-    def __init__(self, num_classes=3):
+    def __init__(self, num_classes=2):
         super(MobileNetV3_Large, self).__init__()
-        self.conv1 = nn.Conv2d(3, 16, kernel_size=3, stride=2, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=3, stride=2, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(16)
         self.hs1 = hswish()
 
@@ -140,7 +153,7 @@ class MobileNetV3_Large(nn.Module):
 
 
 class MobileNetV3_Small(nn.Module):
-    def __init__(self, num_classes=3):
+    def __init__(self, num_classes=2):
         super(MobileNetV3_Small, self).__init__()
         self.conv1 = nn.Conv2d(1, 16, kernel_size=3, stride=2, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(16)
@@ -197,11 +210,10 @@ class MobileNetV3_Small(nn.Module):
         return out
 
 
-
-def test():
+if __name__=='__main__':
     net = MobileNetV3_Small()
-    x = torch.randn(2,3,224,224)
-    y = net(x)
-    print(y.size()) # torch.Size([2, 3])
-
-# test()
+    from torchsummary import summary
+    summary(net, input_size=(1, 312, 312), device="cpu")
+    # x = torch.randn(2,1,500,500)
+    # y = net(x)
+    # print(y.size()) # torch.Size([2, 2])

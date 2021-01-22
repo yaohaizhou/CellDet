@@ -1,1 +1,0 @@
-input_size 368, batch_size 64, evaluate_batch_size 64, NUM_EPOCHS 100, lr 0.0005, device_ids [0], ckp_path ./weight/1, load_ckp None

@@ -22,26 +22,22 @@ def list_all_files(rootdir):
 
 class ReadData(Dataset):
     def __init__(self, image_root, image_size, data_augumentation=None):
-        Class_Zero_Dir = image_root + "/0/"
-        Class_One_Dir = image_root + "/1/"
-        Class_Two_Dir = image_root + "/2/"
+        Class_Mesothelial_Dir = image_root + "/Mesothelial/"
+        Class_Cancer_Dir = image_root + "/Cancer/"
 
         pic_paths = []
         labels    = []
-        Class_Zero_Files = list_all_files(Class_Zero_Dir)
-        pic_paths += Class_Zero_Files
-        labels += [0 for i in range(len(Class_Zero_Files))]
+        Class_Mesothelial_Files = list_all_files(Class_Mesothelial_Dir)
+        pic_paths += Class_Mesothelial_Files
+        labels += [0 for i in range(len(Class_Mesothelial_Files))]
 
-        Class_One_Files = list_all_files(Class_One_Dir)
-        pic_paths += Class_One_Files
-        labels += [1 for i in range(len(Class_One_Files))]
+        Class_Cancer_Files = list_all_files(Class_Cancer_Dir)
+        pic_paths += Class_Cancer_Files
+        labels += [1 for i in range(len(Class_Cancer_Files))]
 
-        Class_Two_Files = list_all_files(Class_Two_Dir)
-        pic_paths += Class_Two_Files
-        labels += [2 for i in range(len(Class_Two_Files))]
 
         print("==> [in LoadDataTrain] len(pic): {}, len(labels): {}".format(len(pic_paths), len(labels)))
-        print("==> [in LoadDataTrain] num Zero: {}, num One: {}, num Two: {}".format(len(Class_Zero_Files), len(Class_One_Files), len(Class_Two_Files)))
+        print("==> [in LoadDataTrain] num Mesothelial: {}, num Cancer: {}".format(len(Class_Mesothelial_Files), len(Class_Cancer_Files)))
 
         self.data = [(pic_path, label) for pic_path, label in zip(pic_paths, labels)]
         self.data_augumentation = data_augumentation

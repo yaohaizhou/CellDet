@@ -24,11 +24,24 @@ model_urls = {
 def _validate(modelOutput, labels):
     maxvalues, maxindices = torch.max(modelOutput.data, 1)
     count = 0
+    Mesothelial_correct = 0
+    Cancer_correct = 0
+    Mesothelial_wrong = 0
+    Cancer_wrong = 0
     for i in range(0, labels.squeeze(1).size(0)):
         if maxindices[i] == labels.squeeze(1)[i]:
             count += 1
+            if maxindices[i] == 0:
+                Mesothelial_correct += 1
+            elif maxindices[i] == 1:
+                Cancer_correct += 1
+        else:
+            if labels.squeeze(1)[i] == 0:
+                Mesothelial_wrong += 1
+            elif labels.squeeze(1)[i] == 1:
+                Cancer_wrong += 1
 
-    return count, maxindices
+    return count, maxindices, Mesothelial_correct, Cancer_correct, Mesothelial_wrong, Cancer_wrong
 
 def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:
     """3x3 convolution with padding"""
@@ -154,7 +167,7 @@ class ResNet(nn.Module):
         self,
         block: Type[Union[BasicBlock, Bottleneck]],
         layers: List[int],
-        num_classes: int = 3,
+        num_classes: int = 2,
         zero_init_residual: bool = False,
         groups: int = 1,
         width_per_group: int = 64,
@@ -387,6 +400,8 @@ def wide_resnet101_2(pretrained: bool = False, progress: bool = True, **kwargs: 
                    pretrained, progress, **kwargs)
 
 # net = resnet18()
+# from torchsummary import summary
+# summary(net, input_size=(1, 500, 500), device="cpu")
 # x = torch.randn(2,3,224,224)
 # y = net(x)
 # print(y.size()) # torch.Size([2, 3])

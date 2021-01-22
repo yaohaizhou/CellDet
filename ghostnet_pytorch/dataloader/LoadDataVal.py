@@ -20,7 +20,7 @@ def list_all_files(rootdir):
               _files.append(path)
     return _files
 
-class ReadTestData(Dataset):
+class ReadValData(Dataset):
     def __init__(self, image_root, image_size, data_augumentation=None):
         Class_Mesothelial_Dir = image_root + "/Mesothelial/"
         Class_Cancer_Dir = image_root + "/Cancer/"
@@ -36,8 +36,8 @@ class ReadTestData(Dataset):
         labels += [1 for i in range(len(Class_Cancer_Files))]
 
 
-        print("==> [in LoadDataTest] len(pic): {}, len(labels): {}".format(len(pic_paths), len(labels)))
-        print("==> [in LoadDataTest] num Mesothelial: {}, num Cancer: {}".format(len(Class_Mesothelial_Files), len(Class_Cancer_Files)))
+        print("==> [in LoadDataVal] len(pic): {}, len(labels): {}".format(len(pic_paths), len(labels)))
+        print("==> [in LoadDataVal] num Mesothelial: {}, num Cancer: {}".format(len(Class_Mesothelial_Files), len(Class_Cancer_Files)))
 
         self.data = [(pic_path, label) for pic_path, label in zip(pic_paths, labels)]
         self.data_augumentation = data_augumentation

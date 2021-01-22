@@ -1,4 +1,6 @@
 .DS_Store
 .*/__pycache__
 .*pyc
-
+*.tar
+*.pyc
+*/__pycache__

@@ -165,14 +165,27 @@ class GhostBottleneck(nn.Module):
 def _validate(modelOutput, labels):
     maxvalues, maxindices = torch.max(modelOutput.data, 1)
     count = 0
+    Mesothelial_correct = 0
+    Cancer_correct = 0
+    Mesothelial_wrong = 0
+    Cancer_wrong = 0
     for i in range(0, labels.squeeze(1).size(0)):
         if maxindices[i] == labels.squeeze(1)[i]:
             count += 1
+            if maxindices[i] == 0:
+                Mesothelial_correct += 1
+            elif maxindices[i] == 1:
+                Cancer_correct += 1
+        else:
+            if labels.squeeze(1)[i] == 0:
+                Mesothelial_wrong += 1
+            elif labels.squeeze(1)[i] == 1:
+                Cancer_wrong += 1
 
-    return count, maxindices
+    return count, maxindices, Mesothelial_correct, Cancer_correct, Mesothelial_wrong, Cancer_wrong
 
 class GhostNet(nn.Module):
-    def __init__(self, cfgs, num_classes=3, width=1.0, dropout=0.2):
+    def __init__(self, cfgs, num_classes=2, width=1.0, dropout=0.2):
         super(GhostNet, self).__init__()
         # setting of inverted residual blocks
         self.cfgs = cfgs
@@ -264,9 +277,15 @@ def ghostnet(**kwargs):
 if __name__=='__main__':
     model = ghostnet()
     # from torchsummary import summary
-    # summary(model, input_size=(3, 320, 256), device="cpu")
-    model.eval()
-    # print(model)
-    input = torch.randn(32,1,368,368)
-    y = model(input)
-    print(y.size())#torch.Size([32, 3])
+    # summary(model, input_size=(1, 500, 500), device="cpu")
+    from thop import profile
+    input = torch.randn(1, 1, 500, 500)
+    flops, params = profile(model, inputs = (input, ))
+    print(flops)
+    print(params)
+
+    # model.eval()
+    # # print(model)
+    # input = torch.randn(32,1,368,368)
+    # y = model(input)
+    # print(y.size())#torch.Size([32, 3])

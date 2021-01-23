@@ -139,13 +139,13 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
             print(message)
             with open(cfg.log_txt_path, 'a') as f:
                 f.write(message + "\n")
-            if max_val_acc > 0.9:
+            if max_val_acc > 0.1:
                 torch.save({
                     "epoch": epoch,
                     "model_state_dict": model.state_dict(),
                     "optimizer_state_dict": optimizer.state_dict(),
                     'loss': loss,
-                }, "./weight/" + cfg.model_type + "_epoch_" + str(epoch) + "_acc_" + str(val_acc) + ".tar")
+                }, cfg.save_path + cfg.model_type + "_epoch_" + str(epoch) + "_acc_" + str(val_acc) + ".tar")
 
 # ===============================================
 #            4. Test model

@@ -17,7 +17,11 @@ class Config(object):
         self.NUM_EPOCHS       =   200
         self.evaluate_epoch   =   1 
         self.lr               =   5e-4
-        self.save_path        =   "./weight/"
+        self.model_type       =   "GhostNet"
+        # MobileNetV3_Large
+        # GhostNet
+        # MobileNetV3_Small
+        self.save_path        =   os.path.join("./weight/" , self.model_type) + "/"
         self.log_path         =   "./log"
         timestr = time.strftime("%Y-%m-%d-%H-%M-%S",time.localtime())
         self.log_txt_path     =   self.log_path + "/log-"+timestr+".txt"
@@ -26,10 +30,7 @@ class Config(object):
         self.load_ckp         =   None
 
         self.DEBUG            =   True
-        self.model_type       =   "GhostNet"
-        # MobileNetV3_Large
-        # GhostNet
-        # MobileNetV3_Small
+
         self.numclasses       =   2
         self.train_image_size =   500
         self.test_image_size  =   500        #original image size 500

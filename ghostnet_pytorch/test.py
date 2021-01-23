@@ -33,11 +33,15 @@ test_path = args.path
 # ===============================================
 #            1. Load Data 
 # ===============================================
+print("=====================================")
 print(cfg.model_type)
 if test_path == 1:
     test_image_file = cfg.test_image_file
+    print("Path 1")
 elif test_path == 2:
     test_image_file = cfg.test2_image_file
+    print("Path 2")
+
 test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
 test_data_loader = DataLoader(test_dataset, batch_size=cfg.eval_batch_size, shuffle=False, num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 print("==> finish loading test data")
@@ -72,9 +76,10 @@ with torch.no_grad():
     for sample_batched in tqdm(test_data_loader):
         input_data = Variable(sample_batched['result']).cuda()
         labels = Variable(sample_batched['label']).cuda()
+        paths = sample_batched['path']
         # print(sample_batched['path'])
         outputs = model(input_data)
-        count_tmp, predict_index_list, Mesothelial_correct_tmp, Cancer_correct_tmp, Mesothelial_wrong_tmp, Cancer_wrong_tmp = validator_function(outputs, labels)
+        count_tmp, predict_index_list, Mesothelial_correct_tmp, Cancer_correct_tmp, Mesothelial_wrong_tmp, Cancer_wrong_tmp = validator_function(outputs, labels, paths)
         correct += count_tmp
         Mesothelial_correct += Mesothelial_correct_tmp
         Cancer_correct += Cancer_correct_tmp

@@ -33,6 +33,7 @@ test_path = args.path
 # ===============================================
 #            1. Load Data 
 # ===============================================
+print(cfg.model_type)
 if test_path == 1:
     test_image_file = cfg.test_image_file
 elif test_path == 2:
@@ -71,8 +72,8 @@ with torch.no_grad():
     for sample_batched in tqdm(test_data_loader):
         input_data = Variable(sample_batched['result']).cuda()
         labels = Variable(sample_batched['label']).cuda()
+        # print(sample_batched['path'])
         outputs = model(input_data)
-        # average_volumns = torch.sum(outputs.data, 1)
         count_tmp, predict_index_list, Mesothelial_correct_tmp, Cancer_correct_tmp, Mesothelial_wrong_tmp, Cancer_wrong_tmp = validator_function(outputs, labels)
         correct += count_tmp
         Mesothelial_correct += Mesothelial_correct_tmp

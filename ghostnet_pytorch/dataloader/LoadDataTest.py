@@ -68,4 +68,4 @@ class ReadTestData(Dataset):
                 # transforms.Normalize([0, 0, 0], [1, 1, 1]) 
             ])(temp_img)
 
-        return {'result':result,'label':torch.LongTensor([label])}
+        return {'result':result,'label':torch.LongTensor([label]), 'path':path}

@@ -253,9 +253,9 @@ def mobilenet(mymode='small', **kwargs):
 
 if __name__ == '__main__':
     net = mobilenet()
-    input = torch.rand(1, 1, 500, 500)
-    output = net(input)
-    print(output.size())
+    # input = torch.rand(1, 1, 500, 500)
+    # output = net(input)
+    # print(output.size())
 
     # from torchsummary import summary
     # summary(net, input_size=(1, 500, 500), device="cpu")

@@ -9,8 +9,8 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 
 class Config(object):                                                                                
     def __init__(self):
-        self.batch_size       =   64#64#
-        self.eval_batch_size  =   64#160#64#
+        self.batch_size       =   32#64#
+        self.eval_batch_size  =   32#160#64#
         self.num_workers      =   32#64#
         self.eval_num_workers =   32#64#
         self.USE_CUDA         =   torch.cuda.is_available()
@@ -26,7 +26,7 @@ class Config(object):
         self.load_ckp         =   None
 
         self.DEBUG            =   True
-        self.model_type       =   "MobileNetV3_Small"
+        self.model_type       =   "GhostNet"
         # MobileNetV3_Large
         # GhostNet
         # MobileNetV3_Small

@@ -9,18 +9,22 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 
 class Config(object):                                                                                
     def __init__(self):
-        self.batch_size       =   32#64#
-        self.eval_batch_size  =   32#160#64#
-        self.num_workers      =   32#64#
-        self.eval_num_workers =   32#64#
+        self.batch_size       =   64#64#
+        self.eval_batch_size  =   64#160#64#
+        self.num_workers      =   8#64#
+        self.eval_num_workers =   8#64#
         self.USE_CUDA         =   torch.cuda.is_available()
         self.NUM_EPOCHS       =   200
         self.evaluate_epoch   =   1 
         self.lr               =   5e-4
-        self.model_type       =   "GhostNet"
+        self.model_type       =   "MobileNetV3_Small"
         # MobileNetV3_Large
         # GhostNet
         # MobileNetV3_Small
+        # inceptionresnetv2
+        # Resnet18
+        # VGG19
+        # inceptionv4
         self.save_path        =   os.path.join("./weight/" , self.model_type) + "/"
         self.log_path         =   "./log"
         timestr = time.strftime("%Y-%m-%d-%H-%M-%S",time.localtime())
@@ -35,7 +39,7 @@ class Config(object):
         self.train_image_size =   500
         self.test_image_size  =   500        #original image size 500
 
-        self.data_augumentation = False
+        self.data_augumentation = True
 
         self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr1/train"        
         self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr1/val"

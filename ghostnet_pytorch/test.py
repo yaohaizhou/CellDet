@@ -41,6 +41,12 @@ if test_path == 1:
 elif test_path == 2:
     test_image_file = cfg.test2_image_file
     print("Path 2")
+elif test_path == 3:
+    test_image_file = cfg.train_image_file
+    print("Path train")
+elif test_path == 4:
+    test_image_file = cfg.val_image_file
+    print("Path val")
 
 test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
 test_data_loader = DataLoader(test_dataset, batch_size=cfg.eval_batch_size, shuffle=False, num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)

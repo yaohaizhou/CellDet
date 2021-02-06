@@ -1,0 +1,1 @@
+Model inceptionv4, input_size 500, batch_size 64, evaluate_batch_size 32, NUM_EPOCHS 200, lr 5e-06, device_ids [0], ckp_path ./weight/inceptionv4/1, load_ckp None

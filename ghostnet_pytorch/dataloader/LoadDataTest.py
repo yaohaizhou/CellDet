@@ -48,24 +48,15 @@ class ReadTestData(Dataset):
         (path, label) = self.data[idx]
         temp_img = Image.open(path)
         picture_h_w = self.image_size
-        if self.data_augumentation:
-            result = transforms.Compose([
-                # transforms.ToPILImage(),
-                transforms.CenterCrop((250, 250)),
-                transforms.Resize((picture_h_w, picture_h_w)),
-                # transforms.CenterCrop((picture_h_w, picture_h_w)),
-                transforms.RandomHorizontalFlip(),
-                # transforms.RandomRotation(20),
-                transforms.ToTensor(),
-                # transforms.Normalize([0, 0, 0], [1, 1, 1]) 
-            ])(temp_img)
-        else:
-            result = transforms.Compose([
-                # transforms.ToPILImage(),
-                transforms.Resize((picture_h_w, picture_h_w)),
-                # transforms.CenterCrop((picture_h_w, picture_h_w)),
-                transforms.ToTensor(),
-                # transforms.Normalize([0, 0, 0], [1, 1, 1]) 
-            ])(temp_img)
 
+        result = transforms.Compose([
+            # transforms.ToPILImage(),
+            transforms.Resize((picture_h_w, picture_h_w)),
+            # transforms.CenterCrop((picture_h_w, picture_h_w)),
+            transforms.ToTensor(),
+            # transforms.Normalize([0.79691195], [0.17281938])
+            transforms.Normalize([0.75598955], [0.16364971])
+        ])(temp_img)
+        # Test 	dataset:[0.80379266] [0.1611552]
+        # Test2 	dataset:[0.75598955] [0.16364971]
         return {'result':result,'label':torch.LongTensor([label]), 'path':path}

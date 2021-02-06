@@ -3,6 +3,41 @@ from torch.autograd import Variable
 from .ghostnet import ghostnet
 from .MobileNetV3New import mobilenet
 from .ResNet import resnet18
+from .inceptionresnetv2 import inceptionresnetv2
+from .vgg19 import vgg19_bn
+from .loss import FocalLoss
+from .inceptionV4 import inceptionv4
+
+def _validate(modelOutput, labels, paths=None):
+    maxvalues, maxindices = torch.max(modelOutput.data, 1)
+    count = 0
+    Mesothelial_correct = 0
+    Cancer_correct = 0
+    Mesothelial_wrong = 0
+    Cancer_wrong = 0
+    import shutil
+    for i in range(0, labels.squeeze(1).size(0)):
+        if maxindices[i] == labels.squeeze(1)[i]:
+            count += 1
+            if maxindices[i] == 0:
+                Mesothelial_correct += 1
+            elif maxindices[i] == 1:
+                Cancer_correct += 1
+        else:
+            if labels.squeeze(1)[i] == 0:
+                Mesothelial_wrong += 1
+                if paths is not None:
+                    # print("Mesothelial_wrong: ",paths[i])
+                    # shutil.copy(paths[i],"/data01/zyh/CellDet/badcase/Mesothelial_wrong/"+paths[i].split("/")[-1])
+                    pass
+            elif labels.squeeze(1)[i] == 1:
+                Cancer_wrong += 1
+                if paths is not None:
+                    # print("Cancer_wrong: ",paths[i])
+                    # shutil.copy(paths[i],"/data01/zyh/CellDet/badcase/Cancer_wrong/"+paths[i].split("/")[-1])
+                    pass
+
+    return count, maxindices, Mesothelial_correct, Cancer_correct, Mesothelial_wrong, Cancer_wrong
 
 class Net(nn.Module):
     def __init__(self,Config):
@@ -15,6 +50,12 @@ class Net(nn.Module):
             self.backbone = mobilenet(mymode='large')
         elif Config.model_type == "Resnet18":
             self.backbone = resnet18()
+        elif Config.model_type == "inceptionresnetv2":
+            self.backbone = inceptionresnetv2(num_classes=2,pretrained=None)
+        elif Config.model_type == "VGG19":
+            self.backbone = vgg19_bn()
+        elif Config.model_type == "inceptionv4":
+            self.backbone = inceptionv4(num_classes=2,pretrained=None)
 
         #function to initialize the weights and biases of each module. Matches the
         #classname with a regular expression to determine the type of the module, then
@@ -40,10 +81,13 @@ class Net(nn.Module):
         return output
     
     def loss(self):
-        return self.backbone.loss
+        # return self.backbone.loss
+        return nn.CrossEntropyLoss()
+        # return FocalLoss()
     
     def validator_function(self):
-        return self.backbone.validator
+        # return self.backbone.validator
+        return _validate
 
 
 # import sys,os

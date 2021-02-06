@@ -51,13 +51,13 @@ class ReadValData(Dataset):
         if self.data_augumentation:
             result = transforms.Compose([
                 # transforms.ToPILImage(),
-                transforms.CenterCrop((250, 250)),
+                # transforms.CenterCrop((300, 300)),
                 transforms.Resize((picture_h_w, picture_h_w)),
                 # transforms.CenterCrop((picture_h_w, picture_h_w)),
                 transforms.RandomHorizontalFlip(),
                 # transforms.RandomRotation(20),
                 transforms.ToTensor(),
-                # transforms.Normalize([0, 0, 0], [1, 1, 1]) 
+                transforms.Normalize([0.8025915], [0.16253494])
             ])(temp_img)
         else:
             result = transforms.Compose([
@@ -65,7 +65,7 @@ class ReadValData(Dataset):
                 transforms.Resize((picture_h_w, picture_h_w)),
                 # transforms.CenterCrop((picture_h_w, picture_h_w)),
                 transforms.ToTensor(),
-                # transforms.Normalize([0, 0, 0], [1, 1, 1]) 
+                transforms.Normalize([0.8025915], [0.16253494])
             ])(temp_img)
 
         return {'result':result,'label':torch.LongTensor([label])}

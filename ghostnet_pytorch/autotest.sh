@@ -7,10 +7,10 @@ files=$(ls weight/$model)
 for filename in $files
 do
     echo $filename
-    python test.py --model $filename --path 1
+    CUDA_VISIBLE_DEVICES=2 python test.py --model $filename --path 1
 done
 for filename in $files
 do
     echo $filename
-    python test.py --model $filename --path 2
+    CUDA_VISIBLE_DEVICES=2 python test.py --model $filename --path 2
 done

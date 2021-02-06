@@ -21,13 +21,14 @@ model_urls = {
     'wide_resnet101_2': 'https://download.pytorch.org/models/wide_resnet101_2-32ee1156.pth',
 }
 
-def _validate(modelOutput, labels):
+def _validate(modelOutput, labels, paths=None):
     maxvalues, maxindices = torch.max(modelOutput.data, 1)
     count = 0
     Mesothelial_correct = 0
     Cancer_correct = 0
     Mesothelial_wrong = 0
     Cancer_wrong = 0
+    import shutil
     for i in range(0, labels.squeeze(1).size(0)):
         if maxindices[i] == labels.squeeze(1)[i]:
             count += 1
@@ -38,8 +39,16 @@ def _validate(modelOutput, labels):
         else:
             if labels.squeeze(1)[i] == 0:
                 Mesothelial_wrong += 1
+                if paths is not None:
+                    # print("Mesothelial_wrong: ",paths[i])
+                    # shutil.copy(paths[i],"/data01/zyh/CellDet/badcase/Mesothelial_wrong/"+paths[i].split("/")[-1])
+                    pass
             elif labels.squeeze(1)[i] == 1:
                 Cancer_wrong += 1
+                if paths is not None:
+                    # print("Cancer_wrong: ",paths[i])
+                    # shutil.copy(paths[i],"/data01/zyh/CellDet/badcase/Cancer_wrong/"+paths[i].split("/")[-1])
+                    pass
 
     return count, maxindices, Mesothelial_correct, Cancer_correct, Mesothelial_wrong, Cancer_wrong
 

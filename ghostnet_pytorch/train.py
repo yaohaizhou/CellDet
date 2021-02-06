@@ -31,7 +31,7 @@ def init_args():
     return parser.parse_args()
 
 
-def evaluate_on_valset(epoch, model):
+def evaluate_on_valset(epoch, model, dataloader):
     model.eval()
     correct = 0
     total = 0
@@ -42,7 +42,7 @@ def evaluate_on_valset(epoch, model):
         col_pre = []
         col_label = []
 
-        for sample_batched in tqdm(val_data_loader):
+        for sample_batched in tqdm(dataloader):
             input_data = Variable(sample_batched['result']).cuda()
             labels = Variable(sample_batched['label']).cuda()
             outputs = model(input_data)
@@ -79,19 +79,25 @@ val_dataset = ReadValData(val_image_file, cfg.train_image_size)
 val_data_loader = DataLoader(val_dataset, batch_size=cfg.batch_size, shuffle=False,
                              num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 print("==> finish loading data")
+# test_image_file = cfg.test_image_file
+test_image_file = cfg.test2_image_file
+test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
+test_data_loader = DataLoader(test_dataset, batch_size=cfg.batch_size, shuffle=False,
+                              num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
+print("==> finish loading test data")
 # ===============================================
 #            2. Load Model
 # ===============================================
 model = Net(cfg)
 loss_fc = model.loss().cuda()
 validator_function = model.validator_function()
-optimizer = torch.optim.SGD(model.parameters(), lr=cfg.lr, momentum=0.9)
+# optimizer = torch.optim.SGD(model.parameters(), lr=cfg.lr, momentum=0.9)
+optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr)
 model = nn.DataParallel(model, cfg.device_ids)
 current_epoch = 1
 if model_save_path:
     if os.path.exists(model_save_path):
-        model, optimizer, current_epoch, loss = load_model(
-            model, optimizer, model_save_path)
+        model, optimizer, current_epoch, loss = load_model(model, optimizer, model_save_path)
 model = model.cuda()
 # ===============================================
 #            3. Train model
@@ -111,8 +117,8 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
         # print(input_data.shape)
         optimizer.zero_grad()
         result = model(input_data)
-        # import pdb;pdb.set_trace()
         loss = loss_fc(result, labels.squeeze(1))
+        # import pdb;pdb.set_trace()
         total_loss += loss
         loss.backward()
         optimizer.step()
@@ -129,7 +135,7 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
         f.write(message + "\n")
 
     if epoch % cfg.evaluate_epoch == 0:
-        val_acc = evaluate_on_valset(epoch, model)
+        val_acc = evaluate_on_valset(epoch, model, test_data_loader)
         if val_acc > max_val_acc:
             max_val_acc = val_acc
             max_train_acc = acc
@@ -139,7 +145,7 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
             print(message)
             with open(cfg.log_txt_path, 'a') as f:
                 f.write(message + "\n")
-            if max_val_acc > 0.1:
+            if max_val_acc > 0.9:
                 torch.save({
                     "epoch": epoch,
                     "model_state_dict": model.state_dict(),
@@ -150,11 +156,13 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
 # ===============================================
 #            4. Test model
 # ===============================================
-test_image_file = cfg.test_image_file
-test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
-test_data_loader = DataLoader(test_dataset, batch_size=cfg.batch_size, shuffle=False,
-                              num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
-print("==> finish loading test data")
+# test_image_file = cfg.test_image_file
+# # test_image_file = cfg.test2_image_file
+# test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
+# test_data_loader = DataLoader(test_dataset, batch_size=cfg.batch_size, shuffle=False,
+#                               num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
+# print("==> finish loading test data")
+
 model = best_model
 model.eval()
 correct = 0

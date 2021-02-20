@@ -78,6 +78,6 @@ def data_set_split(src_data_folder, target_data_folder, train_scale=0.6, val_sca
 
 
 if __name__ == '__main__':
-    src_data_folder = "/data01/zyh/CellDet/datasets/src"
-    target_data_folder = "/data01/zyh/CellDet/datasets/expr1"
+    src_data_folder = "/data01/zyh/CellDet/datasets/expr2/data"
+    target_data_folder = "/data01/zyh/CellDet/datasets/expr2"
     data_set_split(src_data_folder, target_data_folder)

@@ -57,7 +57,8 @@ class ReadData(Dataset):
                 transforms.RandomHorizontalFlip(),
                 # transforms.RandomRotation(20),
                 transforms.ToTensor(),
-                transforms.Normalize([0.79691195], [0.17281938])
+                # transforms.Normalize([0.79691195], [0.17281938])
+                transforms.Normalize([0.5], [0.5])
             ])(temp_img)
         else:
             result = transforms.Compose([
@@ -65,7 +66,8 @@ class ReadData(Dataset):
                 transforms.Resize((picture_h_w, picture_h_w)),
                 # transforms.CenterCrop((picture_h_w, picture_h_w)),
                 transforms.ToTensor(),
-                transforms.Normalize([0.79691195], [0.17281938])
+                # transforms.Normalize([0.79691195], [0.17281938])
+                transforms.Normalize([0.5], [0.5])
             ])(temp_img)
 
         return {'result':result,'label':torch.LongTensor([label])}

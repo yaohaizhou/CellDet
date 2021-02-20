@@ -30,18 +30,19 @@ def get_mean_std(dataloader, ratio=0.5):
 train_image_file = cfg.train_image_file
 val_image_file = cfg.val_image_file
 # training_dataset = ReadData(train_image_file, cfg.train_image_size)
-# training_data_loader = DataLoader(training_dataset, batch_size=int(0.5*(len(training_dataset))),
+# data_loader = DataLoader(training_dataset, batch_size=int(0.5*(len(training_dataset))),
 #                                   shuffle=True, num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 # val_dataset = ReadValData(val_image_file, cfg.train_image_size)
-# val_data_loader = DataLoader(val_dataset, batch_size=int(0.5*(len(val_dataset))), shuffle=False,
+# data_loader = DataLoader(val_dataset, batch_size=int(0.5*(len(val_dataset))), shuffle=True,
 #                              num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 # print("==> finish loading data")
 # test_image_file = cfg.test_image_file
-test_image_file = cfg.test2_image_file
+# test_image_file = cfg.test2_image_file
+test_image_file = cfg.test3_image_file
 test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
-test_data_loader = DataLoader(test_dataset, batch_size=int(0.5*(len(test_dataset))), shuffle=False,
+data_loader = DataLoader(test_dataset, batch_size=int((len(test_dataset))), shuffle=True,
                               num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 # print("==> finish loading test data")
 
-train_mean, train_std = get_mean_std(test_data_loader)
+train_mean, train_std = get_mean_std(data_loader)
 print(train_mean,train_std)

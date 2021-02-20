@@ -79,8 +79,8 @@ val_dataset = ReadValData(val_image_file, cfg.train_image_size)
 val_data_loader = DataLoader(val_dataset, batch_size=cfg.batch_size, shuffle=False,
                              num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
 print("==> finish loading data")
-# test_image_file = cfg.test_image_file
-test_image_file = cfg.test2_image_file
+# test_image_file = cfg.test2_image_file
+test_image_file = cfg.test_image_file
 test_dataset = ReadTestData(test_image_file, cfg.test_image_size)
 test_data_loader = DataLoader(test_dataset, batch_size=cfg.batch_size, shuffle=False,
                               num_workers=cfg.num_workers, drop_last=True, pin_memory=cfg.pin_memory)
@@ -135,7 +135,7 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
         f.write(message + "\n")
 
     if epoch % cfg.evaluate_epoch == 0:
-        val_acc = evaluate_on_valset(epoch, model, test_data_loader)
+        val_acc = evaluate_on_valset(epoch, model, val_data_loader)#test_data_loader val_data_loader
         if val_acc > max_val_acc:
             max_val_acc = val_acc
             max_train_acc = acc
@@ -145,7 +145,7 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
             print(message)
             with open(cfg.log_txt_path, 'a') as f:
                 f.write(message + "\n")
-            if max_val_acc > 0.9:
+            if max_val_acc > 0.95:
                 torch.save({
                     "epoch": epoch,
                     "model_state_dict": model.state_dict(),

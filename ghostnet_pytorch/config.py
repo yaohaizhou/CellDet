@@ -41,10 +41,13 @@ class Config(object):
 
         self.data_augumentation = True
 
-        self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr1/train"        
-        self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr1/val"
-        self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr1/test"
+        # self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr1/train"        
+        # self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr1/val"
+        # self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr1/test"
         self.test2_image_file   =  "/data01/zyh/CellDet/datasets/expr1/test2"
+        self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr2/train"
+        self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr2/val"
+        self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr2/test"
 
         self.device_ids       =   [0]
         self.main_gpu_id      =   0

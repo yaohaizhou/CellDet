@@ -55,7 +55,8 @@ class ReadTestData(Dataset):
             # transforms.CenterCrop((picture_h_w, picture_h_w)),
             transforms.ToTensor(),
             # transforms.Normalize([0.79691195], [0.17281938])
-            transforms.Normalize([0.75598955], [0.16364971])
+            # transforms.Normalize([0.75598955], [0.16364971])
+            transforms.Normalize([0.5], [0.5])
         ])(temp_img)
         # Test 	dataset:[0.80379266] [0.1611552]
         # Test2 	dataset:[0.75598955] [0.16364971]

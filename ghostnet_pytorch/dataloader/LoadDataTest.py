@@ -54,6 +54,6 @@ class ReadTestData(Dataset):
             transforms.CenterCrop((self.crop_size, self.crop_size)),
             transforms.Resize((picture_h_w, picture_h_w)),
             transforms.ToTensor(),
-            transforms.Normalize([0.5], [0.5])
+            transforms.Normalize([0.7906623], [0.16963087])#[0.7906623] [0.16963087]
         ])(temp_img)
         return {'result':result,'label':torch.LongTensor([label]), 'path':path}

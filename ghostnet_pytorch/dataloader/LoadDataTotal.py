@@ -20,7 +20,7 @@ def list_all_files(rootdir):
               _files.append(path)
     return _files
 
-class ReadValData(Dataset):
+class ReadTotalData(Dataset):
     def __init__(self, image_root, image_size, crop_size, data_augumentation=None):
         Class_Mesothelial_Dir = image_root + "/Mesothelial/"
         Class_Cancer_Dir = image_root + "/Cancer/"
@@ -36,8 +36,8 @@ class ReadValData(Dataset):
         labels += [1 for i in range(len(Class_Cancer_Files))]
 
 
-        print("==> [in LoadDataVal] len(pic): {}, len(labels): {}".format(len(pic_paths), len(labels)))
-        print("==> [in LoadDataVal] num Mesothelial: {}, num Cancer: {}".format(len(Class_Mesothelial_Files), len(Class_Cancer_Files)))
+        print("==> [in LoadDataTotal] len(pic): {}, len(labels): {}".format(len(pic_paths), len(labels)))
+        print("==> [in LoadDataTotal] num Mesothelial: {}, num Cancer: {}".format(len(Class_Mesothelial_Files), len(Class_Cancer_Files)))
 
         self.data = [(pic_path, label) for pic_path, label in zip(pic_paths, labels)]
         self.data_augumentation = data_augumentation
@@ -49,19 +49,9 @@ class ReadValData(Dataset):
         (path, label) = self.data[idx]
         temp_img = Image.open(path)
         picture_h_w = self.image_size
-        if self.data_augumentation:
-            result = transforms.Compose([
-                transforms.CenterCrop((self.crop_size, self.crop_size)),
-                transforms.Resize((picture_h_w, picture_h_w)),
-                transforms.ToTensor(),
-                transforms.Normalize([0.7906623], [0.16963087])#[0.7906623] [0.16963087]
-            ])(temp_img)
-        else:
-            result = transforms.Compose([
-                transforms.CenterCrop((self.crop_size, self.crop_size)),
-                transforms.Resize((picture_h_w, picture_h_w)),
-                transforms.ToTensor(),
-                transforms.Normalize([0.7906623], [0.16963087])#[0.7906623] [0.16963087]
-            ])(temp_img)
 
+        result = transforms.Compose([
+            transforms.Resize((picture_h_w, picture_h_w)),
+            transforms.ToTensor(),
+        ])(temp_img)
         return {'result':result,'label':torch.LongTensor([label])}

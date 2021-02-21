@@ -1,0 +1,37 @@
+Model MobileNetV3_Small, input_size 500, batch_size 64, evaluate_batch_size 64, NUM_EPOCHS 200, lr 0.0005, device_ids [0], ckp_path ./weight/MobileNetV3_Small/1, load_ckp None
+==> [train] epoch 1, total_loss 7.359804153442383, train_acc 0.934375
+==> [evaluate on val] epoch 1, acc 0.6586538461538461 
+epoch 1, acc 0.6586538461538461, saving model
+==> [train] epoch 2, total_loss 3.082587242126465, train_acc 0.973046875
+==> [evaluate on val] epoch 2, acc 0.9855769230769231 
+epoch 2, acc 0.9855769230769231, saving model
+==> [train] epoch 3, total_loss 1.86953866481781, train_acc 0.984375
+==> [evaluate on val] epoch 3, acc 0.9795673076923077 
+==> [train] epoch 4, total_loss 1.2922718524932861, train_acc 0.988671875
+==> [evaluate on val] epoch 4, acc 0.9867788461538461 
+epoch 4, acc 0.9867788461538461, saving model
+==> [train] epoch 5, total_loss 1.3963910341262817, train_acc 0.988671875
+==> [evaluate on val] epoch 5, acc 0.9771634615384616 
+==> [train] epoch 6, total_loss 0.7829928994178772, train_acc 0.9921875
+==> [evaluate on val] epoch 6, acc 0.9927884615384616 
+epoch 6, acc 0.9927884615384616, saving model
+==> [train] epoch 7, total_loss 0.6866180300712585, train_acc 0.99375
+==> [evaluate on val] epoch 7, acc 0.9098557692307693 
+==> [train] epoch 8, total_loss 0.8188794255256653, train_acc 0.994140625
+==> [evaluate on val] epoch 8, acc 0.953125 
+==> [train] epoch 9, total_loss 0.5806705951690674, train_acc 0.993359375
+==> [evaluate on val] epoch 9, acc 0.9663461538461539 
+==> [train] epoch 10, total_loss 0.22847691178321838, train_acc 0.99765625
+==> [evaluate on val] epoch 10, acc 0.9795673076923077 
+==> [train] epoch 11, total_loss 0.31793081760406494, train_acc 0.997265625
+==> [evaluate on val] epoch 11, acc 0.9459134615384616 
+==> [train] epoch 12, total_loss 1.226889967918396, train_acc 0.9890625
+==> [evaluate on val] epoch 12, acc 0.9747596153846154 
+==> [train] epoch 13, total_loss 0.24802140891551971, train_acc 0.997265625
+==> [evaluate on val] epoch 13, acc 0.9795673076923077 
+==> [train] epoch 14, total_loss 0.208907350897789, train_acc 0.99765625
+==> [evaluate on val] epoch 14, acc 0.9891826923076923 
+==> [train] epoch 15, total_loss 0.2156534343957901, train_acc 0.9984375
+==> [evaluate on val] epoch 15, acc 0.9375 
+==> [train] epoch 16, total_loss 0.3712117671966553, train_acc 0.99765625
+==> [evaluate on val] epoch 16, acc 0.9867788461538461 

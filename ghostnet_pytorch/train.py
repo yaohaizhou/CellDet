@@ -14,7 +14,7 @@ from model import Net
 from dataloader.LoadDataTrain import ReadData
 from dataloader.LoadDataVal import ReadValData
 from dataloader.LoadDataTest import ReadTestData
-
+from tensorboardX import SummaryWriter
 
 def load_model(model, optimizer, ckp_path):
     checkpoint = torch.load(ckp_path)
@@ -35,6 +35,10 @@ def evaluate_on_valset(epoch, model, dataloader):
     model.eval()
     correct = 0
     total = 0
+    Mesothelial_correct = 0
+    Cancer_correct = 0
+    Mesothelial_wrong = 0
+    Cancer_wrong = 0
     global validator_function
 
     with torch.no_grad():
@@ -47,9 +51,13 @@ def evaluate_on_valset(epoch, model, dataloader):
             labels = Variable(sample_batched['label']).cuda()
             outputs = model(input_data)
             # average_volumns = torch.sum(outputs.data, 1)
-            count_tmp, predict_index_list, _, _, _, _ = validator_function(outputs, labels)
+            count_tmp, predict_index_list, Mesothelial_correct_tmp, Cancer_correct_tmp, Mesothelial_wrong_tmp, Cancer_wrong_tmp = validator_function(outputs, labels)
             # print(outputs,labels)
             correct += count_tmp
+            Mesothelial_correct += Mesothelial_correct_tmp
+            Cancer_correct += Cancer_correct_tmp
+            Mesothelial_wrong += Mesothelial_wrong_tmp
+            Cancer_wrong += Cancer_wrong_tmp
             total += int(len(labels))
 
     print("correct is ", correct)
@@ -58,9 +66,9 @@ def evaluate_on_valset(epoch, model, dataloader):
     print(message)
     with open(cfg.log_txt_path, 'a') as f:
         f.write(message + "\n")
-    return acc
+    return acc, Mesothelial_correct/(Mesothelial_correct+Mesothelial_wrong), Cancer_correct/(Cancer_correct+Cancer_wrong)
 
-
+writer = SummaryWriter()
 cfg = Config()
 with open(cfg.log_txt_path, 'a') as f:
     f.write(cfg.config_message + "\n")
@@ -126,8 +134,10 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
         count_tmp, predict_index_list, _, _, _, _ = validator_function(result, labels)
         correct += count_tmp
         total += int(len(labels))
-
     acc = correct/total
+    writer.add_scalar('data/loss', total_loss, epoch)
+    writer.add_scalar('data/train_acc', acc, epoch)
+
     message = "==> [train] epoch {}, total_loss {}, train_acc {}".format(
         epoch, total_loss, acc)
     print(message)
@@ -135,7 +145,10 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
         f.write(message + "\n")
 
     if epoch % cfg.evaluate_epoch == 0:
-        val_acc = evaluate_on_valset(epoch, model, val_data_loader)#test_data_loader val_data_loader
+        val_acc,Mesothelial_acc, Cancer_acc = evaluate_on_valset(epoch, model, val_data_loader)#test_data_loader val_data_loader
+        writer.add_scalar('data/val_acc', val_acc, epoch)
+        writer.add_scalar('data/Mesothelial_acc', Mesothelial_acc, epoch)
+        writer.add_scalar('data/Cancer_acc', Cancer_acc, epoch)
         if val_acc > max_val_acc:
             max_val_acc = val_acc
             max_train_acc = acc
@@ -145,14 +158,15 @@ for epoch in range(current_epoch, cfg.NUM_EPOCHS+1):
             print(message)
             with open(cfg.log_txt_path, 'a') as f:
                 f.write(message + "\n")
-            if max_val_acc > 0.9:
+            if max_val_acc > 0.95:
                 torch.save({
                     "epoch": epoch,
                     "model_state_dict": model.state_dict(),
                     "optimizer_state_dict": optimizer.state_dict(),
                     'loss': loss,
                 }, cfg.save_path + cfg.model_type + "_epoch_" + str(epoch) + "_acc_" + str(val_acc) + ".tar")
-
+writer.export_scalars_to_json("./boardlog/all_scalars.json")
+writer.close()
 # ===============================================
 #            4. Test model
 # ===============================================

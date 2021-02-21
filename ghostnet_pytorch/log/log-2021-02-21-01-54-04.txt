@@ -1,7 +1,0 @@
-Model MobileNetV3_Small, input_size 500, batch_size 64, evaluate_batch_size 64, NUM_EPOCHS 200, lr 0.0005, device_ids [0], ckp_path ./weight/MobileNetV3_Small/1, load_ckp None
-==> [train] epoch 1, total_loss 9.577128410339355, train_acc 0.915234375
-==> [evaluate on val] epoch 1, acc 0.6586538461538461 
-epoch 1, acc 0.6586538461538461, saving model
-==> [train] epoch 2, total_loss 5.482933044433594, train_acc 0.949609375
-==> [evaluate on val] epoch 2, acc 0.8413461538461539 
-epoch 2, acc 0.8413461538461539, saving model

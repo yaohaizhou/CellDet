@@ -4,3 +4,4 @@
 *.tar
 *.pyc
 */__pycache__
+ghostnet_pytorch/runs

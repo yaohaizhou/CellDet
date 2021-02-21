@@ -17,7 +17,7 @@ class Config(object):
         self.NUM_EPOCHS       =   200
         self.evaluate_epoch   =   1 
         self.lr               =   5e-4
-        self.model_type       =   "MobileNetV3_Small"
+        self.model_type       =   "Resnet18"
         # MobileNetV3_Large
         # GhostNet
         # MobileNetV3_Small
@@ -38,6 +38,7 @@ class Config(object):
         self.numclasses       =   2
         self.train_image_size =   500
         self.test_image_size  =   500        #original image size 500
+        self.crop_image_size  =   300
 
         self.data_augumentation = True
 
@@ -45,9 +46,12 @@ class Config(object):
         # self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr1/val"
         # self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr1/test"
         self.test2_image_file   =  "/data01/zyh/CellDet/datasets/expr1/test2"
-        self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr2/train"
-        self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr2/val"
-        self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr2/test"
+        # self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr2/train"
+        # self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr2/val"
+        # self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr2/test"
+        self.train_image_file  =  "/data01/zyh/CellDet/datasets/expr3/train"
+        self.val_image_file   =  "/data01/zyh/CellDet/datasets/expr3/val"
+        self.test_image_file   =  "/data01/zyh/CellDet/datasets/expr3/test"
 
         self.device_ids       =   [0]
         self.main_gpu_id      =   0

@@ -35,7 +35,7 @@ def data_set_split(src_data_folder, target_data_folder, train_scale=0.6, val_sca
                 os.mkdir(class_split_path)
 
     # 按照比例划分数据集，并进行数据图片的复制
-    # 首先进行分类遍历
+    # 首先进行分类遍历，shuffle处理
     for class_name in class_names:
         current_class_data_path = os.path.join(src_data_folder, class_name)
         current_all_data = os.listdir(current_class_data_path)
@@ -78,6 +78,6 @@ def data_set_split(src_data_folder, target_data_folder, train_scale=0.6, val_sca
 
 
 if __name__ == '__main__':
-    src_data_folder = "/data01/zyh/CellDet/datasets/expr2/data"
-    target_data_folder = "/data01/zyh/CellDet/datasets/expr2"
+    src_data_folder = "/data01/zyh/CellDet/datasets/expr3/data"
+    target_data_folder = "/data01/zyh/CellDet/datasets/expr3"
     data_set_split(src_data_folder, target_data_folder)

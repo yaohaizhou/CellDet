@@ -21,7 +21,7 @@ def list_all_files(rootdir):
     return _files
 
 class ReadValData(Dataset):
-    def __init__(self, image_root, image_size, data_augumentation=None):
+    def __init__(self, image_root, image_size, crop_size, data_augumentation=None):
         Class_Mesothelial_Dir = image_root + "/Mesothelial/"
         Class_Cancer_Dir = image_root + "/Cancer/"
 
@@ -42,6 +42,7 @@ class ReadValData(Dataset):
         self.data = [(pic_path, label) for pic_path, label in zip(pic_paths, labels)]
         self.data_augumentation = data_augumentation
         self.image_size = image_size
+        self.crop_size = crop_size
     def __len__(self):
         return len(self.data)
     def __getitem__(self, idx):
@@ -50,23 +51,15 @@ class ReadValData(Dataset):
         picture_h_w = self.image_size
         if self.data_augumentation:
             result = transforms.Compose([
-                # transforms.ToPILImage(),
-                # transforms.CenterCrop((300, 300)),
+                transforms.CenterCrop((self.crop_size, self.crop_size)),
                 transforms.Resize((picture_h_w, picture_h_w)),
-                # transforms.CenterCrop((picture_h_w, picture_h_w)),
-                transforms.RandomHorizontalFlip(),
-                # transforms.RandomRotation(20),
                 transforms.ToTensor(),
-                # transforms.Normalize([0.8025915], [0.16253494])
                 transforms.Normalize([0.5], [0.5])
             ])(temp_img)
         else:
             result = transforms.Compose([
-                # transforms.ToPILImage(),
                 transforms.Resize((picture_h_w, picture_h_w)),
-                # transforms.CenterCrop((picture_h_w, picture_h_w)),
                 transforms.ToTensor(),
-                # transforms.Normalize([0.8025915], [0.16253494])
                 transforms.Normalize([0.5], [0.5])
             ])(temp_img)
 

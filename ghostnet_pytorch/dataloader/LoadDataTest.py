@@ -21,7 +21,7 @@ def list_all_files(rootdir):
     return _files
 
 class ReadTestData(Dataset):
-    def __init__(self, image_root, image_size, data_augumentation=None):
+    def __init__(self, image_root, image_size, crop_size, data_augumentation=None):
         Class_Mesothelial_Dir = image_root + "/Mesothelial/"
         Class_Cancer_Dir = image_root + "/Cancer/"
 
@@ -42,6 +42,7 @@ class ReadTestData(Dataset):
         self.data = [(pic_path, label) for pic_path, label in zip(pic_paths, labels)]
         self.data_augumentation = data_augumentation
         self.image_size = image_size
+        self.crop_size = crop_size
     def __len__(self):
         return len(self.data)
     def __getitem__(self, idx):
@@ -50,14 +51,9 @@ class ReadTestData(Dataset):
         picture_h_w = self.image_size
 
         result = transforms.Compose([
-            # transforms.ToPILImage(),
+            transforms.CenterCrop((self.crop_size, self.crop_size)),
             transforms.Resize((picture_h_w, picture_h_w)),
-            # transforms.CenterCrop((picture_h_w, picture_h_w)),
             transforms.ToTensor(),
-            # transforms.Normalize([0.79691195], [0.17281938])
-            # transforms.Normalize([0.75598955], [0.16364971])
             transforms.Normalize([0.5], [0.5])
         ])(temp_img)
-        # Test 	dataset:[0.80379266] [0.1611552]
-        # Test2 	dataset:[0.75598955] [0.16364971]
         return {'result':result,'label':torch.LongTensor([label]), 'path':path}
